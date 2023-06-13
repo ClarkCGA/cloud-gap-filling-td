@@ -1,4 +1,5 @@
 FROM osgeo/gdal:ubuntu-full-3.0.3
+#FROM osgeo/gdal:ubuntu-full-3.6.3
 
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
