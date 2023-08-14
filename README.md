@@ -82,5 +82,6 @@ The IP to jupyterlab would be displayed automatically.
 ## __Other Information__
 - The current pipeline works.
 - The pipeline for cloud mask and img chips are similar, check the img pipeline for more information about functions and such.
+## __Potential Updates__
+- Complete: Adding retry for quetry process to prevent from failing due to internect connection issues.
 - WIP: Adding multi-processing to query and download of tiles.
-- WIP: Adding retry for quetry process to prevent from failing due to internect connection issues.
