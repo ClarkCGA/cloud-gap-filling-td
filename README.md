@@ -1,2 +1,68 @@
-# gfm-gap-filling-td
-Training data for gap filling task of the GFM downstream model evaluation 
+# GFM Gap-Filling Training Data Generation
+This repository contains training data generation pipeline for gap filling task of the GFM downstream model evaluation task.
+<br />
+
+## __Introduction__
+<br />
+
+The current pipeline rely on NASA's STAC-API access to query the data, a geojson that contains each chips' geometry, with the projection of EPSG:4326 is required to process the query for tiles. Another geojson that is in EPSG:5070 projection is also needed for precise chipping of the tiles. A CDL tile is required to match the HLS projection to CDL's grid and projection. 
+
+More information is in the notebooks. 
+
+There are two parts in this repo:
+1. Generating the bbox of chips in GeoJSON to be used in the query/download and chipping pipeline
+    - The notebook is located in the bbox_generate folder.
+2. Whole pipeline of the query/download/chipping process
+    - The dockerfile and notebooks are located in the root of the repo.
+<br />
+
+## Build/Run Docker Environment:
+<br />
+
+Build the Docker image as following:
+```
+docker build -t gfm-gap-data .
+```
+
+Run the Docker as following (this should run after changing folder to the current folder of the repo):
+```
+ docker run -it -v "$(pwd)":/home/ -v <full path of the data folder>:/data/ -p 8888:8888 gfm-gap-data
+```
+The IP to jupyterlab would be displayed automatically.
+
+*Notice: If running from EC2 you should replace the ip address by the public DNS of the EC2*
+<br />
+
+## Generating Chip Bboxes:
+To generate the chip bboxes run the notebook `bbox_generate/gen_chip_bbox.ipynb`. This requires the USDA CDL .tiff file to be located `/data/<name of cdl>`. As for this pipelin we uses `2022_30m_cdls.tif`.
+*Notice: To learn more about and download the USDA CDL file, check "https://www.nass.usda.gov/Research_and_Science/Cropland/SARS1a.php"*
+<br />
+
+## Running the HLS Chipping Data Pipeline
+<br />
+
+### General workflow
+
+- For HLS image chips
+
+1. Run the `hls_imgData_pipeline.ipynb` till it says `Run hls_reprojecting.ipynb first`. All tiles should now be downloaded, and we need to reproject them to match the CDL's projection, column and rows.
+
+2. Run the `hls_reprojecting.ipynb` to reproject all downloaded HLS tiles and its bands.
+
+3. Run the rest of `hls_reprojecting.ipynb` to chip and write the chips.
+
+- For HLS realistic cloud masks.
+
+1. Run the `hls_cloudmask_pipeline.ipynb` till it says `Run hls_reprojecting.ipynb first`.
+
+2. Run the `hls_reprojecting.ipynb` to reproject all the fmask tif.
+
+3. Run the rest of `hls_cloudmask_pipeline.ipynb` to chip the fmasks. The fmasks are reclassified to a binary format, and a csv is created to track the could coverage for each cloud mask.
+
+## __Other Information__
+- The pipeline for cloud mask and img chips are similar, check the img pipeline for more information about functions and such.
+- In case the downloading and reprojecting process failed or stopped due to internet connection issue or memory issue, simply rerun the same code chunk as the pipeline would check if the targeting file exist or not.
+- Potentially there will be corrupted or missing tiles when downloading or reprojecting, and most likely due to internet or memory issue. You may ended up with less than expected chips, but the loss would be minor (in most cases)
+
+## __Potential Updates__
+- Adding multi-processing to query and download of tiles.
