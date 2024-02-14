@@ -1,22 +1,22 @@
-# GFM Gap-Filling Training Data Generation
-This repository contains the training data generation pipeline for Cloud Gap Imputation fine-tuning of the Prithvi Geospatial Foundation Model.
+# Cloud Gap Imputation Training Data Generation
+This repository contains the training data generation pipeline for Cloud Gap Imputation fine-tuning of the Prithvi Geospatial Foundation Model. 
+
+You can access the Prithvi model on [Hugging Face](https://huggingface.co/ibm-nasa-geospatial/Prithvi-100M), and read the pre-print paper on [arXiv](https://arxiv.org/abs/2310.18660). 
 <br />
 
 ## __Introduction__
 <br />
 
-This repo uses the NASA's STAC-API to query for HLS imagery given a set of image chip bboxes. The bboxes are generated across the CONUS using code provided in the repo. 
+This repo uses the NASA's STAC-API to query for HLS imagery given a set of image chip bboxes. The bboxes are generated across the CONUS using code provided in the repo. The bboxes are sampled using the USDA CDL data to ensure a diverse representation of land cover classes in the final dataset. Since the chips are defined based on CDL projection (`EPSG:5070`), each HLS tile is also projected to this CRS during data processing, and the final chips are all in `EPSG:5070`.
 
 There are two parts in this repo:
-1. Generating the bbox of chips in GeoJSON to be used in the query/download and chipping pipeline
+1. Generating chip bbox in GeoJSON format:
     - The notebook is located under `bbox_generate/`.
-    - This will generate two GeoJSON files one in `EPSG:4326` and one in `EPSG:5070` for chip bboxes. The first one is required to process the query for tiles, and the second one is needed for precise chipping of the tiles. 
-2. Whole pipeline of the query/download/chipping process
-    - TheDockerfile and notebooks are located in the root of the repo.
+    - This process will generate two GeoJSON files one in `EPSG:4326` and one in `EPSG:5070` for chip bboxes. The first one is required to process the query for tiles, and the second one is needed for precise chipping of the tiles. 
+2. Querying/downloading/chipping process:
+    - The Dockerfile and notebooks are located in the root of the repo.
 
-
-
-More information is in the notebooks. 
+More information is provided in the notebooks. 
 <br />
 
 ## Build/Run Docker Environment:
