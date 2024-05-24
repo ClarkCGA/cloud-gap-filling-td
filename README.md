@@ -1,7 +1,11 @@
-# Cloud Gap Imputation Training Data Generation
-This repository contains the training data generation pipeline for Cloud Gap Imputation fine-tuning of the Prithvi Geospatial Foundation Model. 
+# Multi-Temporal Cloud Gap Imputation With HLS Data Across CONUS
+This repository contains the pipeline for the Multi-Temporal Cloud Gap Imputation With HLS Data Across CONUS training dataset. This dataset has been used as a fine-tuning task
+for the Prithvi Geospatial Foundation Model. 
 
-You can access the Prithvi model on [Hugging Face](https://huggingface.co/ibm-nasa-geospatial/Prithvi-100M), and read the pre-print paper on [arXiv](https://arxiv.org/abs/2310.18660). 
+Deatils of the fine-tuning and comparison with baseline mode is presented in [Seeing Through the Clouds: Cloud Gap Imputation with Prithvi Foundation Model](https://arxiv.org/abs/2404.19609). You can access the Prithvi model on [Hugging Face](https://huggingface.co/ibm-nasa-geospatial/Prithvi-100M), and read the pre-print paper on [arXiv](https://arxiv.org/abs/2310.18660). 
+
+The dataset is hosted on [Source Cooperative](). 
+
 <br />
 
 ## __Introduction__
