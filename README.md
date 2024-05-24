@@ -4,7 +4,7 @@ for the Prithvi Geospatial Foundation Model.
 
 Deatils of the fine-tuning and comparison with baseline mode is presented in [Seeing Through the Clouds: Cloud Gap Imputation with Prithvi Foundation Model](https://arxiv.org/abs/2404.19609). You can access the Prithvi model on [Hugging Face](https://huggingface.co/ibm-nasa-geospatial/Prithvi-100M), and read the pre-print paper on [arXiv](https://arxiv.org/abs/2310.18660). 
 
-The dataset is hosted on [Source Cooperative](). 
+The dataset is hosted on [Source Cooperative](https://beta.source.coop/repositories/clarkcga/hls-multi-temporal-cloud-gap-imputation/). 
 
 <br />
 
