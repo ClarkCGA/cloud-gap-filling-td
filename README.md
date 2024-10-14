@@ -73,3 +73,15 @@ The GeoJSON files containing chip bboxes in `EPSG:4326` and `EPSG:5070` should b
 - The pipeline for cloud mask and image chips are similar, check the image pipeline for more information about functions and such.
 - In case the downloading and reprojecting process failed or stopped due to internet connection issue or memory issue, simply rerun the same code chunk as the pipeline would check if the targeting file exists or not.
 - Potentially there will be corrupted or missing tiles when downloading or reprojecting, and most likely due to internet or memory issue. You may end up with less than expected chips, but the loss would be minor.
+
+## License and Citation
+This dataset is published under a [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. If you find this dataset useful for your application, you can cite it as following:
+```
+@misc{hls-multi-temporal-cloud-gap-imputation,
+    author = {Godwin, Denys and Li, Hanxi (Steve) and Alemohammad, Hamed},
+    doi    = {https://doi.org/10.5281/zenodo.11281740},
+    title  = {{Multi-Temporal Cloud Gap Imputation With HLS Data Across CONUS}},
+    version = {1.0},
+    year   = {2024}
+}
+```
